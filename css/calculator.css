@@ -5,7 +5,7 @@ body {
 
 #calculator {
     margin-top : 20px ;
-    width : 650px ;
+    width : 600px ;
     box-shadow : 5px 5px #4f4f4f ;
     background-color : #FFFFAA ;
     border-radius : 10px ;    
@@ -14,7 +14,7 @@ body {
 
 #font_block {
     text-align : left ;
-    width : 80% ;
+    width : 85% ;
     padding-top : 10px ;
 }
 
@@ -37,7 +37,7 @@ body {
 }
 
 #input_data {
-    width : 100%;
+    width : 95%;
     border-radius : 5px ;
     height : 40px ;
     outline : none ;
@@ -55,5 +55,55 @@ hr {
 
 #button_block {
     padding-bottom : 15px ;
+    width : 100% ;
 }
 
+.bt {
+    width : 105px ;
+    height : 50px ;
+    font-size : 20px ;
+    margin : 10px 10px 10px 10px ;
+    border-radius : 8px ;
+    box-shadow : 3px 3px #4F4F4F ;
+    color : #4F4F4F ;
+    outline : none ;
+}
+
+.number:hover {
+    background-color : #8e8e8e ;
+    border-color : #8e8e8e ;
+    color : #FFFFFF ;
+}
+
+.fun {
+    background-color : #FF6E6E ;
+    border-color : #FF6E6E ;
+}
+
+.fun:hover {
+    background-color : #FF3B3B ;
+    border-color : #FF3B3B ;
+    color : #FFFFFF ;
+}
+
+.equal {
+    background-color : #FFCF78 ;
+    border-color : #FFCF78 ;
+}
+
+.equal:hover {
+    background-color : #FFB630 ;
+    border-color : #FFB630 ;
+    color : #FFFFFF ;
+}
+
+.clear {
+    background-color : #9999FF ;
+    border-color : #9999FF ;
+}
+
+.clear:hover {
+    background-color : #6363FF ;
+    border-color : #6363FF ;
+    color : #FFFFFF ;
+}
