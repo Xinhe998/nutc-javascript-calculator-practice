@@ -15,7 +15,6 @@ String.prototype.CountSearch=function(reg){
     }
     return count;
 }
-$('#screen').attr("error","");
 function get_numeral_last(value,sign){
     return value.substring(value.LastSearch(sign)+1,value.length);
 }
@@ -41,6 +40,30 @@ function Simple_Calculation(value1,value2,sign){
             break;
     }
 }
+function Calculation_Controller(input){
+    var numer1,
+        sign_str,
+        numer2,
+        formula,
+        ans,
+        sign_reg=new Array(/[\*\/]/,/[\+\-]/),
+        i=0;
+    while(i<=1){
+        while(input.search(sign_reg[i])>-1){
+            var sign=input.search(sign_reg[i]);
+            numer1=get_numeral_last(input.substring(0,sign),/[\+\-\*\/]/);
+            sign_str=input.substring(sign,sign+1);
+            numer2=get_numeral(input.substring(sign+1,input.length),/[\+\-\*\/]/);
+            formula=numer1+sign_str+numer2;
+            ans=Math.floor(Simple_Calculation(numer1,numer2,sign_str));
+            input=input.substring(0,input.indexOf(formula))+(isFinite(ans)?ans:0)+input.substring(input.indexOf(formula)+formula.length,input.length);
+        }
+        i++;
+    }
+    return input;
+}
+
+$('#screen').attr("error","");
 $(".numeral").click(function(){
     var this_value=$(this).html();
     var input_starte=$('#screen').html().trim();
@@ -90,27 +113,8 @@ $(".ans").click(function(){
     try {
 
         if(input.search(/[\)\()]/)<0){
-            var numer1,sign_str,numer2,formula;
-            var reg=new Array(/[\*\/]/,/[\+\-]/);
-            var i=0;
-            while(i<=1){
-                while(input.search(reg[i])>-1){
-                    console.log(input);
-                    var sign=input.search(reg[i]);
-                    numer1=get_numeral_last(input.substring(0,sign),/[\+\-\*\/]/);
-                    sign_str=input.substring(sign,sign+1);
-                    numer2=get_numeral(input.substring(sign+1,input.length),/[\+\-\*\/]/);
-                    formula=numer1+sign_str+numer2;
-                    ans=Math.floor(Simple_Calculation(numer1,numer2,sign_str));
-                    console.log(formula+"="+ans);
-                    //console.log(numer1);
-                    //console.log(sign_str);
-                    //console.log(input.substring(sign+1,input.length));
-                    input=input.substring(0,input.indexOf(formula))+(isFinite(ans)?ans:0)+input.substring(input.indexOf(formula)+formula.length,input.length);
-                }
-                i++;
-            }
-            $('#screen').html(input);
+            ans=Calculation_Controller(input);
+            $('#screen').html(ans);
         }else{
     
             ans=eval(input);
