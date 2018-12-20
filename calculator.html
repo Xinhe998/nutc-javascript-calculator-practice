@@ -6,35 +6,38 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
     <link href="css\calculator.css" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-3.2.1.js"></script>
+    <script src="js\calculator.js"></script>
 </head>
 <body>
-    <script src="js\todo.js"></script>
+    
     <div id="body">
         <p>mycalculatot</p>
         <input type="text" readonly>
         <div id="divbtn">
-                <button value="1">1</button>
-                <button value="2">2</button>
-                <button value="3">3</button>
-                <button value="+">+</button>
-                <button value="4">4</button>
-                <button value="5">5</button>
-                <button value="6">6</button>
-                <button value="-">-</button>
-                <button value="7">7</button>
-                <button value="8">8</button>
-                <button value="9">9</button>
-                <button value="*">*</button>
+                <button value="1" class="num1">1</button>
+                <button value="2" class="num2">2</button>
+                <button value="3" class="num3">3</button>
+                <button value="+" class="x symbol">+</button>
+                <button value="4" class="num4">4</button>
+                <button value="5" class="num5">5</button>
+                <button value="6" class="num6">6</button>
+                <button value="-" class="x symbol">-</button>
+                <button value="7" class="num7">7</button>
+                <button value="8" class="num8">8</button>
+                <button value="9" class="num9">9</button>
+                <button value="*" class="x symbol">*</button>
                 <button value="(">(</button>
-                <button value="0">0</button>
+                <button value="0" class="num0">0</button>
                 <button value=")">)</button>
-                <button value="/">/</button>
-                <button value="C">C</button>
+                <button value="/" class="x symbol">/</button>
+                <button value="C" id="clear">C</button>
                 <button value=".">.</button>
                 <button value="B">B</button>
-                <button value="=">= </button>
+                <button value="=" id="with">= </button>
         </div>
         
     </div>
+    
 </body>
 </html>
