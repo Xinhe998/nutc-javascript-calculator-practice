@@ -16,14 +16,35 @@ String.prototype.CountSearch=function(reg){
     return count;
 }
 $('#screen').attr("error","");
-function get_numeral(value,sign){
+function get_numeral_last(value,sign){
     return value.substring(value.LastSearch(sign)+1,value.length);
+}
+function get_numeral(value,sign){
+    return value.substring(0,value.search(sign));
+}
+function Simple_Calculation(value1,value2,sign){
+    switch (sign) {
+        case "+":
+            return Number(value1)+Number(value2);
+            break;
+        case "-":
+            return Number(value1)-Number(value2);
+            break;
+        case "*":
+            return Number(value1)*Number(value2);
+            break;
+        case "/":
+            return Number(value1)/Number(value2);
+            break;
+        default:
+            break;
+    }
 }
 $(".numeral").click(function(){
     var this_value=$(this).html();
     var input_starte=$('#screen').html().trim();
     var last_input=input_starte.substring(input_starte.length-1,input_starte.length);
-    var numer=get_numeral(input_starte,/[\(\)\+\-\*\/]/);
+    var numer=get_numeral_last(input_starte,/[\(\)\+\-\*\/]/);
     if($('#screen').attr("error")!=""){
         $("#screen").html("");
         $('#screen').attr("error","");
@@ -60,20 +81,45 @@ $(".clear").click(function(){
 });
 $(".ans").click(function(){
     var input=$('#screen').html().trim();
-    input=(input.LastSearch(/[\+\-\*\//]/)==input.length-1?input.substring(0,input.length-1):input);
+    input=(input.LastSearch(/[\+\-\*\/]/)==input.length-1?input.substring(0,input.length-1):input);
     var befo=input.CountSearch(/[\(]/);
     while(befo!=input.CountSearch(/[\)]/))input+=")";
+    var ans=0;
 
     try {
 
-        var ans=eval(input);
-        if(isFinite(ans)){
-            $('#screen').html(ans);
+        if(input.search(/[\)\()]/)<0){
+            var numer1,sign_str,numer2,formula;
+            while(input.search(/[\*\/]/)>-1){
+                var sign=input.search(/[\*\/]/);
+                numer1=get_numeral_last(input.substring(0,sign),/[\+\-\*\/]/);
+                sign_str=input.substring(sign,sign+1);
+                numer2=get_numeral(input.substring(sign+1,input.length),/[\+\-\*\/]/);
+                formula=numer1+sign_str+numer2;
+                ans=Math.floor(Simple_Calculation(numer1,numer2,sign_str));
+                input=input.substring(0,input.indexOf(formula))+(isFinite(ans)?ans:0)+input.substring(input.indexOf(formula)+formula.length,input.length);
+            }
+            while(input.search(/[\+\-]/)>-1){
+                var sign=input.search(/[\+\-]/);
+                numer1=get_numeral_last(input.substring(0,sign),/[\+\-\*\/]/);
+                sign_str=input.substring(sign,sign+1);
+                numer2=get_numeral(input.substring(sign+1,input.length),/[\+\-\*\/]/);
+                formula=numer1+sign_str+numer2;
+                ans=Simple_Calculation(numer1,numer2,sign_str);
+                input=input.substring(0,input.indexOf(formula))+(isFinite(ans)?ans:0)+input.substring(input.indexOf(formula)+formula.length,input.length);
+            }
+            $('#screen').html(input);
         }else{
-            $('#screen').html("輸入錯誤");
-            $('#screen').attr("error","錯誤");
+    
+            ans=eval(input);
+            if(isFinite(ans)){
+                $('#screen').html(ans);
+            }else{
+                $('#screen').html(0);
+            }
+            
         }
-
+    
     } catch (error) {
         $('#screen').html("輸入錯誤");
         $('#screen').attr("error","錯誤");
