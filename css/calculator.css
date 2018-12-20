@@ -1,0 +1,113 @@
+* {
+    padding: 0px;
+    margin: 0px;
+    font-family: Arial, Microsoft JhengHei;
+}
+
+.container {
+    width: 600px;
+    height: 600px;
+    margin: 50px auto;
+    border-radius: 50px;
+    background-color: #c4e1e1;
+}
+
+.container input[type="text"] {
+    width: 500px;
+    height: 40px;
+    margin: 45px;
+    padding: 5px;
+    border: none;
+    border-radius: 20px;
+    box-shadow: -3px -3px 0px #CCC;
+    font-size: 30px;
+    color: #444;
+}
+
+hr {
+    width: 90%;
+    height: 3px;
+    margin: 0px 5% 30px 5%;
+    border: none;
+    background-color: #FFF;
+}
+
+.row {
+    width: 500px;
+    margin: 0px auto;
+}
+
+.container input[type="button"] {
+    width: 20%;
+    height: 50px;
+    margin: 15px 2%;
+    border: none;
+    font-size: 24px;
+    color: #444;
+    line-height: 50px;
+    border-radius: 20px;
+    text-align: center;
+    outline: 0;
+    cursor: pointer;
+}
+
+.num {
+    background-color: #FFF;
+}
+
+.sign {
+    background-color: #ffe153;
+}
+
+.clear {
+    background-color: #c2ff68
+}
+
+.sum {
+    background-color: #ffad86;
+}
+
+@media screen and (max-width:768px) {
+    .container {
+        width: 500px;
+        margin: 0px auto;
+    }
+    .container input[type="text"] {
+        width: 400px;
+    }
+    .row {
+        width: 400px;
+    }
+}
+
+@media screen and (max-width:500px) {
+    .container {
+        width: 400px;
+    }
+    .container input[type="text"] {
+        width: 300px;
+    }
+    .row {
+        width: 300px;
+    }
+    .container input[type="button"] {
+        width: 21%;
+        margin: 15px 1%;
+    }
+}
+
+@media screen and (max-width:400px) {
+    .container {
+        width: 360px;
+    }
+    .container input[type="text"] {
+        width: 260px;
+    }
+    .row {
+        width: 260px;
+    }
+    .container input[type="button"] {
+        width: 23%;
+        margin: 15px 0px;
+    }
+}
