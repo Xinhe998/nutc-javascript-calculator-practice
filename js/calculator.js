@@ -3,6 +3,21 @@ $(document).ready(function(){
     $(".bt").click(function(){
        (!isNaN($(this).val()) || $(this).val()=="." )? _number($(this).val()) : _symbol($(this).val()) ;
     });
+    $(".style_images").click(function(){
+        if( $(".style_images").index( $(this) )==0 ){
+            $("body").css("background-color","#8e8e8e");
+            $("#style_div").css("border-color","#DDDDDD");
+            $(".style_font").css("color","#DDDDDD");
+            $(this).attr('src', 'images/checked.png');
+            $(".style_images:eq(1)").attr('src','images/oval.png');
+        }else{
+            $("body").css("background-color","#DDDDDD");
+            $("#style_div").css("border-color","#8e8e8e");
+            $(".style_font").css("color","#8e8e8e");
+            $(this).attr('src', 'images/checked.png');
+            $(".style_images:eq(0)").attr('src','images/oval.png');
+        }
+    });
 });
 
 function _number(num){
@@ -18,7 +33,6 @@ function _number(num){
     else
         input_data=[input_data=$("#input_data").val()];
     if(judge==false){ 
-        //if( $("#input_data").val().indexOf(".")>=0 && num==".")
         if( input_data[input_data.length-1].indexOf(".")>=0 && num==".")
             return;
         else

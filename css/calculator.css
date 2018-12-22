@@ -107,3 +107,20 @@ hr {
     border-color : #6363FF ;
     color : #FFFFFF ;
 }
+
+#style_div {
+    border : 1px dashed #DDDDDD;
+    margin-top : 20px;
+    width : 450px ;
+}
+
+.style_font {
+    color : #DDDDDD; ;
+}
+
+.style_images {
+    width : 15px ;
+    height : 15px ;
+}
+
+/* #4F4F4F  */
