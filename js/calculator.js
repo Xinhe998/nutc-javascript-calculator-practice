@@ -62,6 +62,17 @@ function Calculation_Controller(input){
     }
     return input;
 }
+function Parentheses(input){
+    var origin=input,formula;
+    while(input.search(/[\(]/)>-1){
+        input=input.substring(input.search(/[\(]/)+1,input.length);
+    }
+    while(input.search(/[\)]/)>-1){
+        input=input.substring(0,input.search(/[\)]/));
+    }
+    formula=input;
+    return origin.substring(0,origin.indexOf(formula)-1)+Calculation_Controller(input)+origin.substring(origin.indexOf(formula)+formula.length+1,origin.length);
+}
 
 $('#screen').attr("error","");
 $(".numeral").click(function(){
@@ -112,20 +123,16 @@ $(".ans").click(function(){
 
     try {
 
-        if(input.search(/[\)\()]/)<0){
+        if(input.search(/[\)\(]/)<0){
             ans=Calculation_Controller(input);
-            $('#screen').html(ans);
         }else{
-    
-            ans=eval(input);
-            if(isFinite(ans)){
-                $('#screen').html(ans);
-            }else{
-                $('#screen').html(0);
+            ans=input;
+            while(ans.search(/[\)\(]/)>-1){
+                ans=Parentheses(ans);
             }
-            
+            ans=Calculation_Controller(ans);
         }
-    
+        $('#screen').html(ans);
     } catch (error) {
         $('#screen').html("輸入錯誤");
         $('#screen').attr("error","錯誤");
