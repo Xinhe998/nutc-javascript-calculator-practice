@@ -15,6 +15,28 @@ String.prototype.CountSearch=function(reg){
     }
     return count;
 }
+Math.RoundDecimal=function(value,amount){
+    var carry=10;
+    for(var i=1;i<amount;i++)carry*=10;
+    value=Math.round(value*carry);
+    value=value/carry;
+    console.log(value);
+    return value;
+}
+Math.FloorDecimal=function(value,amount){
+    var carry=10;
+    for(var i=1;i<amount;i++)carry*=10;
+    value=Math.floor(value*carry);
+    value=value/carry;
+    return value;
+}
+Math.CeilDecimal=function(value,amount){
+    var carry=10;
+    for(var i=1;i<amount;i++)carry*=10;
+    value=Math.Ceil(value*carry);
+    value=value/carry;
+    return value;
+}
 function get_numeral_last(value,sign){
     return value.substring(value.LastSearch(sign)+1,value.length);
 }
@@ -55,7 +77,7 @@ function Calculation_Controller(input){
             sign_str=input.substring(sign,sign+1);
             numer2=get_numeral(input.substring(sign+1,input.length),/[\+\-\*\/]/);
             formula=numer1+sign_str+numer2;
-            ans=Math.floor(Simple_Calculation(numer1,numer2,sign_str));
+            ans=Math.RoundDecimal(Simple_Calculation(numer1,numer2,sign_str),4);
             input=input.substring(0,input.indexOf(formula))+(isFinite(ans)?ans:0)+input.substring(input.indexOf(formula)+formula.length,input.length);
         }
         i++;
