@@ -120,20 +120,15 @@ $(".ans").click(function(){
     var befo=input.CountSearch(/[\(]/);
     while(befo!=input.CountSearch(/[\)]/))input+=")";
     var ans=0;
-
     try {
-
-        if(input.search(/[\)\(]/)<0){
-            ans=Calculation_Controller(input);
-        }else{
-            ans=input;
-            while(ans.search(/[\)\(]/)>-1){
-                ans=Parentheses(ans);
-            }
-            ans=Calculation_Controller(ans);
+        ans=input;
+        while(ans.search(/[\)\(]/)>-1){
+            ans=Parentheses(ans);
         }
+        ans=Calculation_Controller(ans);
         $('#screen').html(ans);
     } catch (error) {
+        console.log(error);
         $('#screen').html("輸入錯誤");
         $('#screen').attr("error","錯誤");
     }
