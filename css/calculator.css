@@ -1,0 +1,17 @@
+body{
+    background-color: darkkhaki
+}
+
+#all{
+    margin: auto;
+    width: 30%;
+    
+}
+#cback{
+    width: 150px;
+    margin: 0 auto;
+    background-color: #ffffff;
+    border-radius: 10px;
+    padding: 20px;
+    text-align: center;
+}
