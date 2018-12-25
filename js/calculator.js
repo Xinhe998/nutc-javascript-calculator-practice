@@ -7,11 +7,20 @@ var r="",l="",s="";
 $("button").click(function()
 {
     obj=$(this).val();
-    if(isNaN(obj)==false)
+    if(obj=="back"){
+        sum=sum.substring(0,sum.length-1)
+        num=sum;
+    }else if(obj=="clean"){
+        num="";
+        sum="";
+    }else if(obj=="equals"){
+        num=eval(num);
+        sum=num;
+    }else if(isNaN(obj)==false){
         number(obj);
-    else
+    }else{
         symbol(obj);
-
+    }
     $("#show").val(sum);
 })
 function number(e)
@@ -39,13 +48,13 @@ function cal(r,l,s,e)
     switch (s)
     {
         case "/" :
-            num = (r / l) + e;
+            num = (Number(r) / Number(l)) + e;
         break ;
         case "*" :
-            num = (r * l) + e ;
+            num = (Number(r) * Number(l)) + e ;
         break ;
         case "-" :
-            num = (r - l) + e ;
+            num = (Number(r) - Number(l)) + e ;
         break ;
         case "+" :
             num = (Number(r) + Number(l)) + e ;
