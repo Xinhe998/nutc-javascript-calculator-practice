@@ -7,15 +7,13 @@ var r="",l="",s="";
 $("button").click(function()
 {
     obj=$(this).val();
-    if(obj=="back"){
+    if(obj=="back"){//回鍵
         sum=sum.substring(0,sum.length-1)
-        num=sum;
     }else if(obj=="clean"){
         num="";
         sum="";
     }else if(obj=="equals"){
-        num=eval(num);
-        sum=num;
+        sum=eval(sum);
     }else if(isNaN(obj)==false){
         number(obj);
     }else{
@@ -25,22 +23,41 @@ $("button").click(function()
 })
 function number(e)
 {
-    num+=e;
-    sum=num;
+    sum+=e;
 }
 function symbol(e)
 {
     var show=$("#show").val();
-    if(show.search(reg)>=0)
+    var c=false;
+    if(e==".")
     {
-        r=show.substring(0,show.search(reg));
-        l=show.substring(show.search(reg)+1,show.length);
-        s=show.substring(show.search(reg),show.search(reg)+1);
-        cal(r,l,s,e)
+        if(sum.indexOf(".")>-1)
+        {
+            if(sum.substring(sum.length -1,sum.length)!=e)
+            {
+                if(sum.substring(sum.length -1,sum.length).search(reg)>-1){
+                    sum=sum+"0.";
+                }else{
+                    sum+=e;
+                }
+            }
+        }else{
+            sum+=e;
+        }
     }else{
-        num+=e;
+        console.log(sum);
+        if(sum.search(reg)>-1)
+        {
+            console.log(sum.substring(sum.search(reg)+1,sum.length));
+            r=sum.substring(0,sum.search(reg));
+            l=sum.substring(sum.search(reg)+1,sum.length);
+            s=sum.substring(sum.search(reg),sum.search(reg)+1);
+            cal(Number(r),l,s,e)
+            sum=num;
+        }else{
+            sum+=e;
+        }
     }
-    sum=num;
 }
 function cal(r,l,s,e)
 {
