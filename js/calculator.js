@@ -5,8 +5,11 @@ $(document).ready(function () {
     var dotcc = 0;
     $(".btn").click(function () {
         num = $(this).val();
-        $("input").val();
-        $("input").val($("input").val() + num);
+        if ($("input").val()=="0"){
+            $("input").val(num);
+        }else {
+            $("input").val($("input").val() + num);
+        }
         //alert(num);
     });
 
