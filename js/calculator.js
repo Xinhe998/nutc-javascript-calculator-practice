@@ -110,6 +110,10 @@ $(".numeral").click(function(){
         $("#screen").append((this_value=="(" && ((isFinite(last_input) && input_starte!="") || last_input==")")?"*"+this_value:this_value));
     }else if(this_value=="."){
         if(Number(numer)==0){
+            
+            if(numer.search(/[0\.]/)>-1){
+                $("#screen").html(input_starte.substring(0,input_starte.length-numer.length));
+            }
             $('#screen').append("0.");
         }else if(numer.indexOf(".")<0){
             $("#screen").append(this_value);
