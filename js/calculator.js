@@ -13,7 +13,7 @@ $("button").click(function()
         num="";
         sum="";
     }else if(obj=="equals"){
-        sum=eval(sum);
+        sum=Number(eval(sum));
     }else if(isNaN(obj)==false){
         number(obj);
     }else{
@@ -27,31 +27,29 @@ function number(e)
 }
 function symbol(e)
 {
-    var show=$("#show").val();
-    var c=false;
     if(e==".")
     {
         if(sum.indexOf(".")>-1)
         {
-            if(sum.substring(sum.length -1,sum.length)!=e)
-            {
-                if(sum.substring(sum.length -1,sum.length).search(reg)>-1){
+            /*if(sum.substring(sum.length -1,sum.length)!=e)
+            {*/
+                if(sum.substring(sum.length -1,sum.length).search(reg)>-1){//符號
                     sum=sum+"0.";
-                }else{
+                }else if(sum.substring(sum.length -1,sum.length)!="."){
                     sum+=e;
                 }
-            }
+            /*}*/
         }else{
             sum+=e;
         }
     }else{
-        console.log(sum);
-        if(sum.search(reg)>-1)
+        if($("#show").val().search(reg)>-1)
         {
-            console.log(sum.substring(sum.search(reg)+1,sum.length));
             r=sum.substring(0,sum.search(reg));
             l=sum.substring(sum.search(reg)+1,sum.length);
             s=sum.substring(sum.search(reg),sum.search(reg)+1);
+            
+            console.log(r,s,l);
             cal(Number(r),l,s,e)
             sum=num;
         }else{
@@ -61,7 +59,6 @@ function symbol(e)
 }
 function cal(r,l,s,e)
 {
-    console.log(r,s,l,e);
     switch (s)
     {
         case "/" :
