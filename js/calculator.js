@@ -56,7 +56,9 @@ $(document).ready(function () {
         $("input").val();
         var index1 = $("input").val().length;
         var x = $("input").val().substr((index1 - 1), 1);
-        if ($("input").val().indexOf(".") > 0){
+        if (index1==0){
+            $("input").val("0" + $(this).val());
+        }else if ($("input").val().indexOf(".") > 0){
             alert("錯誤");
         }else if (isNaN(x) == true && dotcc != 0) {
             alert("錯誤");
