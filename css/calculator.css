@@ -1,0 +1,79 @@
+body{
+    background-color: rgb(207, 199, 199);
+}
+#calculator{
+    text-align: center;
+    margin-left: 28%;
+    padding: 20px;
+    background-color: rgb(168, 220, 245);
+    height: 420px;
+    width: 600px;
+    border-radius: 40px;
+    box-shadow: 3px 4px 10px rgba(0, 0, 0,0.5);
+}
+#calculator_head{
+    text-align: left;
+    height: 100px;
+    width: 100%;
+}
+#name{
+    color:rgb(255,255,255);
+    font-size: 20px;
+}
+#information{
+    height: 20px;
+    color:rgb(226, 147, 1);
+    font-size: 12px;
+    font-style: italic;
+}
+#screen{
+    height: 50px;
+    background-color: rgb(135, 190, 216);
+    box-shadow: inset 1px 1px 3px 0px rgba(0, 0, 0,0.5);
+    padding: 5px;
+    font-size: 45px;
+    color:rgb(255,255,255);
+    white-space: nowrap;
+    overflow: hidden;
+    overflow-x:auto;
+}
+.calculator_body{
+    /*text-align: justify;  左右分散對齊*/
+    padding: 0px;
+    margin: 0px;
+}
+button{
+    width: 120px;
+    height: 50px;
+    box-shadow:  4px 4px 2px rgba(82, 82, 82, 0.5);
+    background-color: rgb(194, 194, 194);
+    margin-right: 20px;
+    margin-bottom: 10px;
+    border-radius: 10px;
+    border:0px;
+    font-size: 20px;
+    color:rgb(128, 128, 128);
+    outline: 0px;
+    cursor: pointer;
+}
+button:active{
+    background-color: rgb(168, 168, 168);
+}
+.numeral{
+    background-color: rgb(255, 254, 198);
+}
+.numeral:active{
+    background-color: rgb(235, 234, 182);
+}
+.clear{
+    background-color: rgb(255, 252, 92);
+}
+.clear:active{
+    background-color: rgb(236, 234, 85);
+}
+.ans{
+    background-color: rgb(255, 149, 149);
+}
+.ans:active{
+    background-color: rgb(238, 139, 139);
+}
