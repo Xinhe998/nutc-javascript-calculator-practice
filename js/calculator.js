@@ -152,7 +152,7 @@ $(".ans").click(function(){
         }
         ans=Calculation_Controller(ans);
         $('#screen').html((ans=="")?"輸入錯誤":ans);
-        $('#screen').attr("error","錯誤");
+        $('#screen').attr("error",(ans=="")?"錯誤":"");
     } catch (error) {
         console.log(error);
         $('#screen').html("輸入錯誤");
