@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="https://code.jquery.com/jquery-3.2.1.js"></script>
+    <link href="css/calculator.css" rel="stylesheet">
+    <title>calculator</title>
+</head>
+<body>
+    <div id="container">
+        <h2>mycalculator</h2>
+        <h4>with jquery</h4>
+        <input class="Answer" type="text" >
+        <hr>
+    </br>
+        <input  class="number button1" type="button"value="1" onclick="getNum('1')">
+        <input  class="number button2" type="button"value="2" onclick="getNum('2')">
+        <input  class="number button3" type="button"value="3" onclick="getNum('3')">
+        <input  class="symbol addbutton" type="button"value="+" onclick="getSymadd('+')">
+    </br>
+        <input  class="number button4" type="button"value="4" onclick="getNum('4')">
+        <input  class="number button5" type="button"value="5" onclick="getNum('5')">
+        <input  class="number button6" type="button"value="6" onclick="getNum('6')">
+        <input  class="symbol Minusbutton" type="button"value="-" onclick="getmin('-')">
+    </br>
+        <input  class="number button7" type="button"value="7" onclick="getNum('7')">
+        <input  class="number button8" type="button"value="8" onclick="getNum('8')">
+        <input  class="number button9" type="button"value="9" onclick="getNum('9')">
+        <input  class="symbol Multiplybutton" type="button"value="*" onclick="getSymadd('*')">
+    </br>
+        <input  class="number leftbutton" type="button"value="(" onclick="getSym('(')">
+        <input  class="number button10" type="button"value="0" onclick="getNum('0')">
+        <input  class="number rightbutton" type="button"value=")" onclick="getSym(')')">
+        <input  class="symbol divisionbutton" type="button"value="/" onclick="getSymadd('/')">
+    </br>
+        <input  class="symbol1 zerobutton" type="button"value="C" onclick="clean('C')">
+        <input  class="number dotbutton" type="button"value="." onclick="getSymadd('.')">
+        <input  class="number backbutton" type="button"value="back" onclick="delback('back')">
+        <input  class="symbol2 equalbutton" type="button"value="=" onclick="Sum('=')">
+    </div>
+
+    <script>
+        function getNum(num){
+            $(".Answer").val(function(i,val)
+            {
+                if(val==0 & val!='0.'){
+                    return num;
+                }
+                else{
+                    return val+num;
+                }   
+            })
+        }
+        function getSymadd(numadd){
+            var answerbox=$(".Answer").val();
+            var symbol=answerbox.substr(answerbox.length-1);
+            if($(".Answer").val()==""){
+                $(".Answer").val("");
+            }
+            else if(symbol=="+"||symbol=="-"||symbol=="*"||symbol=="/"||symbol=="."){
+                $(".Answer").val(function(i,val)
+                {
+                    answerbox2=answerbox.substr(0,answerbox.length-1);
+                    val=answerbox2;
+                    return val+numadd;
+                })
+            }
+            else{
+                $(".Answer").val(function(i,val)
+                {
+                    return val+numadd;
+                })
+            }
+        }
+
+        function getmin(nummin){
+            var answerbox=$(".Answer").val();
+            var symbol=answerbox.substr(answerbox.length-1);
+            if(symbol=="+"||symbol=="-"||symbol=="*"||symbol=="/"||symbol=="."){
+                $(".Answer").val(function(i,val)
+                {
+                    answerbox2=answerbox.substr(0,answerbox.length-1);
+                    val=answerbox2;
+                    return val+nummin;
+                })
+            }
+            else{
+                $(".Answer").val(function(i,val)
+                {
+                    return val+nummin;
+                })
+            }
+        }
+
+        function Sum(ssum){
+            var answerbox=$(".Answer").val();
+            var symbol=answerbox.substr(answerbox.length-1);
+            if(symbol=="+"||symbol=="-"||symbol=="*"||symbol=="/"||symbol=="."){
+                alert("aa");
+            }
+            else{
+                $(".Answer").val(eval($(".Answer").val()));
+            }
+        }
+
+        function clean(){
+            $(".Answer").val("");
+        }
+
+        function delback(){
+            var answerbox=$(".Answer").val();
+            $(".Answer").val(function(i,val)
+                {
+                    return answerbox.substr(0,answerbox.length-1);
+                })
+        }
+
+        function getSym(numsym){
+            var answerbox=$(".Answer").val();
+            var symbol=answerbox.substr(answerbox.length-1);
+            if($(".Answer").val()==""){
+                $(".Answer").val("");
+            }
+            else{
+                $(".Answer").val(function(i,val)
+                {
+                    return val+numsym;
+                })
+            }
+        }
+
+
+        //var num=
+        //$(".number").click(function() { 
+        //    console.log($(this).attr("value"));
+        //})
+        //$(".Answer").val=num;
+        //console.log($(".Answer").val);
+        
+        //var sym=
+        //$(".symbol").click(function() { 
+        //    console.log($(this).attr("value"));
+        //})
+        //console.log(sym);
+
+
+    </script>
+
+    
+</body>
+</html>
