@@ -110,7 +110,6 @@ $(".numeral").click(function(){
         $("#screen").append((this_value=="(" && ((isFinite(last_input) && input_starte!="") || last_input==")")?"*"+this_value:this_value));
     }else if(this_value=="."){
         if(Number(numer)==0){
-            
             if(numer.search(/[0\.]/)>-1){
                 $("#screen").html(input_starte.substring(0,input_starte.length-numer.length));
             }
@@ -144,7 +143,7 @@ $(".ans").click(function(){
     var input=$('#screen').html().trim();
     input=(input.LastSearch(/[\+\-\*\/]/)==input.length-1?input.substring(0,input.length-1):input);
     var befo=input.CountSearch(/[\(]/);
-    while(befo!=input.CountSearch(/[\)]/))input+=")";
+    while(befo>input.CountSearch(/[\)]/))input+=")";
     var ans=0;
     try {
         ans=input;
@@ -152,7 +151,8 @@ $(".ans").click(function(){
             ans=Parentheses(ans);
         }
         ans=Calculation_Controller(ans);
-        $('#screen').html(ans);
+        $('#screen').html((ans=="")?"輸入錯誤":ans);
+        $('#screen').attr("error","錯誤");
     } catch (error) {
         console.log(error);
         $('#screen').html("輸入錯誤");
