@@ -1,11 +1,17 @@
 function getNum(num) { //Number 0~9
-    var pre_result = $("#result").val();
-    var aft_result = pre_result + num;
-    $("#result").val(aft_result);
+    var r = $("#result").val();
+    var lastword = r.substr(r.length - 1);
+    if (lastword == "0" && r.length == 1) { //0不能一直按
+        $("#result").val();
+    } else {
+        $("#result").val(function(i, val) {
+            return val + num;
+        });
+    }
 }
 
-function clearnum() { //clear all
-    $("#result").val('');
+function clearNum() { //clear all
+    $("#result").val("");
 }
 
 function back() { //backspace
@@ -14,48 +20,68 @@ function back() { //backspace
     });
 }
 
-function cal(sym) {
-    var s, count_plus,
-        count_minus,
-        plus_result = 0,
-        minus_result = 0,
-        arr
-    s = $("#result").val();
-    count_plus = s.match(/[+]/g)
-    count_minus = s.match(/[-]/g)
-    switch (sym) {
-        case '+':
+function equal() {
+    var r = $("#result").val();
+    var lastword = r.substr(r.length - 1);
+    var s
+    if (lastword == "+" || lastword == "-" || lastword == "*" || lastword == "/" || lastword == ".") {
+        s = r.substr(0, r.length - 1)
+        $("#result").val(eval(s));
+    } else {
+        $("#result").val(eval($("#result").val()));
+    }
+}
 
-            if (s.split("+").length == 1) { //如字串只有一個數字按加號即在數字加+
-                s += '+';
-            } else if (s.split("+").length > 1 && count_plus.length == 1 || count_minus.length == 1) { //如字串有兩個數字(e.g.5+4)按加號即把字串split存成陣列再value相加
-                arr = s.split("+")
-                $.each(arr, function(j, arrval) {
-                    console.log(plus_result)
-                    plus_result += parseInt(arrval);
-                })
-                s = plus_result + "+";
-            } else {
-                s += ""
-            }
-            return $("#result").val(s);
-        case '-':
-            // s = $("#result").val()
-            // if (s.split("-").length == 1) { //如字串只有一個數字按加號即在數字加-
-            //     s += '-';
-            // } else if (s.split("-").length > 1 && count_minus.length == 1 || count_plus.length == 1) { //如字串有兩個數字(e.g.5+4)按加號即把字串split存成陣列再value相加
-            //     arr = s.split("-")
-            //     $.each(arr, function(j, arrval) {
-            //         console.log(minus_result)
-            //         minus_result = -parseInt(arrval) - minus_result;
-            //     })
-            //     s = minus_result + "-";
-            // } else {
-            //     s += ""
-            // }
-            // return $("#result").val(s);
-        case '*':
-        case '/':
+function cal(sym) { //+ * /
+    var r = $("#result").val();
+    var lastword = r.substr(r.length - 1);
+    if (r == "") { //空的時候不能點運算符號
+        $("#result").val("");
+    } else if (lastword == "+" || lastword == "*" || lastword == "/" || lastword == ".") { //運算符號不能重複一直點
+        $("#result").val();
+    } else {
+        $("#result").val(function(i, val) {
+            return val + sym
+        });
+    }
+}
 
+function minus(minussym) { //-
+    var r = $("#result").val();
+    var lastword = r.substr(r.length - 1);
+    if (lastword == "+" || lastword == "-" || lastword == "*" || lastword == "/" || lastword == ".") {
+        $("#result").val();
+    } else {
+        $("#result").val(function(i, val) {
+            return val + minussym
+        });
+    }
+}
+
+function left(bracketsym) { //左括號
+    var r = $("#result").val();
+    var lastword = r.substr(r.length - 1);
+    if (lastword == "0" || lastword == "1" || lastword == "2" || lastword == "3" || lastword == "4" || lastword == "5" || lastword == "6" || lastword == "7" || lastword == "8" || lastword == "9" || lastword == "(" || lastword == ")") {
+        $("#result").val(); //前面不可是數字或括號
+    } else {
+        $("#result").val(function(i, val) {
+            return val + bracketsym
+        });
+    }
+}
+
+function right(bracketsym) { //右括號
+    var r = $("#result").val();
+    var lastword = r.substr(r.length - 1);
+    if (r == "") {
+        $("#result").val("");
+    } else if (lastword == "+" || lastword == "-" || lastword == "*" || lastword == "/" || lastword == "." || lastword == "(" || lastword == ")") {
+        $("#result").val(); //前面不可是運算符號或括號
+    } else if (r.indexOf('(') == -1) { //前面如果沒有左括號維持一樣結果
+        $("#result").val();
+    } else {
+        $("#result").val(function(i, val) {
+            return val + bracketsym
+        });
     }
 }
